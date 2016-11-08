@@ -1,0 +1,75 @@
+#+Title: Exercício 3.18
+#+Author: Gustavo Cavaliere
+
+Exercise 3.18. Write a procedure that examines a list and determines whether it contains a cycle, that
+is, whether a program that tried to find the end of the list by taking successive cdrs would go into an
+infinite loop. Exercise 3.13 constructed such lists.
+
+Alguns códigos necessários para a resolucao do exercício sao:
+
+#+BEGIN_SRC scheme
+#lang racket
+
+(require sicp)
+
+(define (last-pair x)
+  (if (null? (cdr x))
+      x
+      (last-pair (cdr x))))
+
+
+(define (make-cycle x)
+  (set-cdr! (last-pair x) x)
+  x)
+
+#+END_SRC 
+
+OBS: Usei o pacote sicp, que já contém o set-cdr!"
+
+Minha primeira ideia foi usar uma resolucao parecida com o exercício 3.17: 
+verificar se o par que compoe o cdr já fora encontrado antes.
+ Se sim, a funcao retornaria "true".
+
+
+
+
+#+BEGIN_SRC scheme
+#lang racket
+
+(define (cycle? x)
+  (let ((encontrado '()))
+    (define (aux x)
+      (if (member x encontrado)
+          #t
+          (if (not(null? x))
+              (begin
+                (set! encontrado (cons x encontrado))
+                (aux (cdr x)))
+              #f)))
+    
+    (aux x)))
+
+#+END_SRC
+
+Para os testes, usei a bibioteca rackunit.
+
+
+#+BEGIN_SRC scheme
+(require rackunit)
+
+(define z (make-cycle (list 'a 'b 'c)))
+(define y (make-cycle (list 'a 'b 'c 'd '( 'a 'b))))
+(define v (list 'a 'b 'c ))
+
+
+
+
+(check-equal? (cycle? z) #t)
+(check-equal? (cycle? y) #t)
+(check-equal? (cycle? v) #f)
+
+
+
+#+END_SRC
+
+

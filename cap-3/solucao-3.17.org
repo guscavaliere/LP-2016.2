@@ -1,10 +1,18 @@
 #+Title: Exercício 3.17
 #+Author: Gustavo Cavaliere
 
+<<<<<<< HEAD
 Exercise 3.17.  Devise a correct version of the count-pairs procedure of
  exercise 3.16 that returns the number of distinct pairs in any structure.
  (Hint: Traverse the structure, maintaining an auxiliary data 
 structure that is used to keep track of which pairs have already been counted.)
+=======
+Devise a correct version of the count-pairs procedure of exercise 3.16
+that returns the number of distinct pairs in any structure.
+
+(Hint: Traverse the structure, maintaining an auxiliary data structure
+that is used to keep track of which pairs have already been counted.)
+>>>>>>> 838794f5b68721308cb41f584df40698412c5b5c
 
 #+BEGIN_SRC scheme
 #lang racket
@@ -38,6 +46,7 @@ pares ou mesmo uma lista de listas.
 
 É importante notar que sempre que encontramos um par nao computado, retornamos
 1. Sempre que nao encontramos um par ou encontramos um par já encontrado, retor-
+<<<<<<< HEAD
 namos 0. No final, teremos uma soma de uns e zeros, cujo total será o número de 
 pares distintos.
 
@@ -47,11 +56,22 @@ Para os testes, usei a bibioteca rackunit.
 
 
 #+Begin_SRC scheme
+=======
+namos 0. No final, teremos uma soma de uns e zeros, cujo total será o
+número de pares distintos. Para os testes, usei a bibioteca rackunit.
+
+#+BEGIN_SRC scheme
+>>>>>>> 838794f5b68721308cb41f584df40698412c5b5c
 (require rackunit)
 
 (check-equal? (count-pairs (list 1 2 3 4 5)) 5)
 (check-equal? (count-pairs (list 'a 'b 'c)) 3)
 (check-equal? (count-pairs (list '(a b) 3)) 4)
+<<<<<<< HEAD
 
 
 #+END_SRC
+=======
+#+END_SRC
+
+>>>>>>> 838794f5b68721308cb41f584df40698412c5b5c
